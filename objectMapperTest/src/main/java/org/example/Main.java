@@ -20,13 +20,4 @@ public class Main {
 
     }
 
-    static class Student {
-        String name;
-        String age;
-
-
-        public String toString() {
-            return "name: "+name+","+"age: "+age;
-        }
-    }
 }
