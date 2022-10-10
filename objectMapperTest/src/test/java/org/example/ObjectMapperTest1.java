@@ -4,10 +4,15 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -55,7 +60,6 @@ public class ObjectMapperTest1 {
         myResultObject.name="Jessica";
         myResultObject.age=31;
 
-
         mapper.writeValue(new File("result.json"), myResultObject);
         // or:
         byte[] jsonBytes = mapper.writeValueAsBytes(myResultObject);
@@ -69,6 +73,26 @@ public class ObjectMapperTest1 {
         System.out.println("Write value into JSON String"+jsonString);
     }
 
+    @Test
+    public void test4() throws JsonProcessingException {
+        //Test Collections
+        Map<String, Integer> map=new HashMap<String, Integer>();
+        map.put("A1", 1);
+        map.put("A2", 2);
+        map.put("A3", 3);
+        map.put("A4", 4);
+        String mapString=mapper.writeValueAsString(map);
+        System.out.println("map string:" + mapString);
+
+        List<String> list=new ArrayList<String>();
+        list.add("E1");
+        list.add("E2");
+        list.add("E3");
+        list.add("E4");
+        String listString=mapper.writeValueAsString(list);
+        System.out.println("listString:" + listString);
+
+    }
 
     // Note: can use getters/setters as well; here we just use public fields directly:
     public static class MyValue {
