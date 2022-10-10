@@ -9,6 +9,9 @@
     <version>1.0-SNAPSHOT</version>
 
 
+    <!--This dependency will also transitively add the following libraries to the classpath:
+    jackson-annotations
+    jackson-core-->
     <dependencies>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
