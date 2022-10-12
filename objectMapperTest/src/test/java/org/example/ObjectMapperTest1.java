@@ -15,6 +15,7 @@ import org.junit.Test;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.databind.DatabindException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class ObjectMapperTest1 {
@@ -74,7 +75,7 @@ public class ObjectMapperTest1 {
     }
 
     @Test
-    public void test4() throws JsonProcessingException {
+    public void test4() throws IOException {
         //Test Collections
         Map<String, Integer> map=new HashMap<String, Integer>();
         map.put("A1", 1);
@@ -92,6 +93,29 @@ public class ObjectMapperTest1 {
         String listString=mapper.writeValueAsString(list);
         System.out.println("listString:" + listString);
 
+        mapString="{\"A1\":1,\"A2\":2,\"A3\":3,\"A4\":4}";
+        listString="[\"E1\",\"E2\",\"E3\",\"E4\"]";
+        Map<String, Integer> newMap=mapper.readValue(mapString, Map.class);
+        for (String key: newMap.keySet()) {
+            System.out.println("key: "+key+","+"value: "+newMap.get(key));
+        }
+        System.out.println("mapper write newMap"+mapper.writeValueAsString(newMap));
+
+        List<String> newList=mapper.readValue(listString, List.class);
+        for(String e: newList){
+            System.out.println("list e: " + e);
+        }
+        System.out.println("mapper write list: "+mapper.writeValueAsString(newList));
+        // and can obviously write out as well
+        mapper.writeValue(new File("testList.json"), newList);
+    }
+
+    @Test
+    public void test5(){
+        Map<String, MyValue> map=new HashMap<String,MyValue>();
+        MyValue myValue1=new MyValue(); myValue1.name="A1"; myValue1.age=21;
+        MyValue myValue2=new MyValue(); myValue2.name="A1"; myValue2.age=21;
+        
     }
 
     // Note: can use getters/setters as well; here we just use public fields directly:
