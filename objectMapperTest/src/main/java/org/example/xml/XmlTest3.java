@@ -11,7 +11,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
-public class XmlTest2 {
+public class XmlTest3 {
   public static void main(String arg[]) throws Exception{
     DocumentBuilder db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
     InputSource is = new InputSource();
