@@ -1,4 +1,3 @@
 test-feature1.txt
 aaaaaaaaaaaaaaaaaaa
 bbbbbbbbbbbbbbbbbbbb
-cccccccccccccccccccc
